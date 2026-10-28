@@ -152,6 +152,7 @@ h1 span{font-weight:300}
 .nl-row button{background:var(--vermillon);color:var(--encre);border:0;font:inherit;font-weight:600;font-size:13.5px;padding:0 22px;cursor:pointer;white-space:nowrap}
 .nl-row button:disabled{opacity:.5;cursor:default}
 .nl-ok{display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-size:12px;line-height:1.5;color:var(--beton);cursor:pointer}
+.nl-ok a{color:var(--craie)}
 .nl-ok input{accent-color:var(--vermillon);margin-top:3px;flex:none}
 .nl-msg{margin-top:12px;font-size:14px;min-height:1.4em}
 .nl-msg.err{color:var(--vermillon)}
@@ -214,7 +215,7 @@ footer{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;p
       </div>
       <input class="hp" type="text" name="email_address_check" tabindex="-1" autocomplete="off" aria-hidden="true">
       <label class="nl-ok"><input type="checkbox" name="OPT_IN" value="1" required>
-        <span>J'accepte de recevoir les nouvelles de Memento (ouverture, offres de lancement). Désabonnement en un clic. <span lang="en">I agree to receive news from Memento. Unsubscribe anytime.</span></span></label>
+        <span>J'accepte de recevoir les nouvelles de Memento (ouverture, offres de lancement). Désabonnement en un clic. <a href="/confidentialite.html">Politique de confidentialité</a>. <span lang="en">I agree to receive news from Memento. Unsubscribe anytime. <a href="/confidentialite.html#en">Privacy policy</a>.</span></span></label>
       <p class="nl-msg" role="status" aria-live="polite"></p>
     </form>
     <div class="sig">
@@ -233,7 +234,7 @@ footer{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;p
 
 <footer>
   <span class="etq">© 2026 Memento · Groupe Capsule Hotels</span>
-  <span class="etq">Montréal</span>
+  <a class="etq" href="/confidentialite.html" style="text-decoration:none">Confidentialité · Privacy</a>
 </footer>
 
 <script>
