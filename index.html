@@ -140,6 +140,22 @@ h1 span{font-weight:300}
 .lieux li:last-child{border-right:0;margin-right:0}
 .lieux b{display:block;font-size:clamp(18px,1.7vw,24px);font-weight:500;letter-spacing:-.02em;line-height:1.15}
 .lieux .etq{display:block;margin-top:6px;font-size:9.5px}
+/* infolettre : un champ, un consentement, un bouton vermillon */
+.nl{margin-top:clamp(28px,4.5vh,44px);max-width:520px}
+.nl h2{font-size:clamp(19px,1.7vw,24px);font-weight:500;letter-spacing:-.02em;line-height:1.2}
+.nl h2 span{font-weight:300;color:var(--beton)}
+.nl-row{display:flex;margin-top:14px;border:1px solid rgba(241,237,230,.34)}
+.nl-row input{flex:1;min-width:0;background:transparent;border:0;color:var(--craie);font:inherit;font-size:15px;padding:15px 16px}
+.nl-row input::placeholder{color:#7d7a74}
+.nl-row input:focus{outline:none}
+.nl-row:focus-within{border-color:var(--craie)}
+.nl-row button{background:var(--vermillon);color:var(--encre);border:0;font:inherit;font-weight:600;font-size:13.5px;padding:0 22px;cursor:pointer;white-space:nowrap}
+.nl-row button:disabled{opacity:.5;cursor:default}
+.nl-ok{display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-size:12px;line-height:1.5;color:var(--beton);cursor:pointer}
+.nl-ok input{accent-color:var(--vermillon);margin-top:3px;flex:none}
+.nl-msg{margin-top:12px;font-size:14px;min-height:1.4em}
+.nl-msg.err{color:var(--vermillon)}
+.nl .hp{position:absolute;left:-9999px}
 .sig{margin-top:clamp(30px,5vh,52px);display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid var(--line);max-width:520px}
 .sig b{font-weight:600}.sig span{font-weight:300}
 
@@ -189,6 +205,18 @@ footer{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;p
       <li><b>Resto-bar</b><span class="etq">Le soir</span></li>
       <li><b>Spa</b><span class="etq">La pause</span></li>
     </ul>
+    <form class="nl" id="nl" novalidate>
+      <h2>Sois parmi les premiers informés. <span lang="en">Be the first to know.</span></h2>
+      <div class="nl-row">
+        <label class="sr" for="nl-email">Courriel · Email</label>
+        <input id="nl-email" name="EMAIL" type="email" autocomplete="email" placeholder="ton@courriel.com" required>
+        <button type="submit">S'inscrire</button>
+      </div>
+      <input class="hp" type="text" name="email_address_check" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="nl-ok"><input type="checkbox" name="OPT_IN" value="1" required>
+        <span>J'accepte de recevoir les nouvelles de Memento (ouverture, offres de lancement). Désabonnement en un clic. <span lang="en">I agree to receive news from Memento. Unsubscribe anytime.</span></span></label>
+      <p class="nl-msg" role="status" aria-live="polite"></p>
+    </form>
     <div class="sig">
       <svg class="porte" width="20" height="23" viewBox="0 0 100 116"><use href="#sym"/></svg>
       <p><b>Memento</b> <span>— souviens-toi.</span></p>
@@ -208,5 +236,30 @@ footer{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;p
   <span class="etq">Montréal</span>
 </footer>
 
+<script>
+/* Infolettre Brevo. BREVO_FORM_URL = l'adresse du formulaire Brevo (…sibforms.com/serve/…).
+   Brevo gère le double opt-in et le désabonnement (LCAP / Loi 25). */
+const BREVO_FORM_URL = '';
+(function(){
+  const f = document.getElementById('nl'); if(!f) return;
+  const msg = f.querySelector('.nl-msg'), btn = f.querySelector('button');
+  f.addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = f.EMAIL.value.trim();
+    msg.className = 'nl-msg';
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ msg.classList.add('err'); msg.textContent = 'Courriel invalide · Invalid email'; return; }
+    if(!f.OPT_IN.checked){ msg.classList.add('err'); msg.textContent = 'Coche la case de consentement · Please tick the consent box'; return; }
+    if(f.email_address_check.value) return;
+    if(!BREVO_FORM_URL){ msg.textContent = 'Inscriptions bientôt ouvertes · Sign-ups opening soon'; return; }
+    btn.disabled = true;
+    const body = new FormData(f); body.append('locale','fr'); body.append('html_type','simple');
+    try{
+      await fetch(BREVO_FORM_URL, {method:'POST', body, mode:'no-cors'});
+      f.reset(); msg.textContent = 'Merci ! Confirme ton inscription dans le courriel que tu vas recevoir. · Thanks! Check your inbox to confirm.';
+    }catch(_){ msg.classList.add('err'); msg.textContent = 'Erreur, réessaie plus tard · Something went wrong, try again later'; }
+    btn.disabled = false;
+  });
+})();
+</script>
 </body>
 </html>
