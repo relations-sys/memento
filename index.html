@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Memento Hôtel Montréal — ouverture 2027 | Café, resto-bar et spa</title>
-<meta name="description" content="Memento, un nouvel hôtel à Montréal : chambres entièrement privées bâties en usine, café, resto-bar et spa sur place. Ouverture en 2027. — A new Montréal hotel opening in 2027.">
+<meta name="description" content="Memento, un nouvel hôtel à Montréal : chambres entièrement privées bâties en usine, café, resto-bar et spa sur place. Ouverture en 2027.">
 <link rel="canonical" href="https://mementohotel.ca/">
-<link rel="alternate" hreflang="fr-CA" href="https://mementohotel.ca/">
-<link rel="alternate" hreflang="en" href="https://mementohotel.ca/">
+<link rel="alternate" hreflang="fr" href="https://mementohotel.ca/">
+<link rel="alternate" hreflang="en" href="https://mementohotel.ca/en/">
 <link rel="alternate" hreflang="x-default" href="https://mementohotel.ca/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#0B0B0C">
@@ -61,7 +61,7 @@
       "@id": "https://mementohotel.ca/#site",
       "url": "https://mementohotel.ca/",
       "name": "Memento",
-      "inLanguage": ["fr-CA", "en"],
+      "inLanguage": "fr-CA",
       "publisher": {"@id": "https://mementohotel.ca/#org"}
     }
   ]
@@ -105,6 +105,9 @@ body{
 
 /* ---------- chrome ---------- */
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:22px var(--gut);border-bottom:1px solid var(--line)}
+.lng{display:flex;gap:14px;align-items:center}
+.lng a{text-decoration:none;color:var(--beton)}
+.lng a[aria-current]{color:var(--craie)}
 .topbar .mk{display:flex;align-items:center;gap:12px}
 
 .vert{position:fixed;left:16px;top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;
@@ -135,10 +138,10 @@ h1 span{font-weight:300}
 @media(prefers-reduced-motion:reduce){.battant{animation:none;transform:scaleX(.22)}}
 
 /* sur place : café, resto-bar, spa */
-.lieux{list-style:none;margin-top:clamp(26px,4vh,40px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:520px;border-top:1px solid var(--line)}
-.lieux li{padding:16px 14px 0 0;border-right:1px solid var(--line);margin-right:14px}
+.lieux{list-style:none;margin-top:clamp(26px,4vh,40px);display:grid;grid-template-columns:repeat(3,auto);justify-content:start;max-width:560px;border-top:1px solid var(--line)}
+.lieux li{padding:16px clamp(16px,2.4vw,34px) 0 0;border-right:1px solid var(--line);margin-right:clamp(16px,2.4vw,34px)}
 .lieux li:last-child{border-right:0;margin-right:0}
-.lieux b{display:block;font-size:clamp(18px,1.7vw,24px);font-weight:500;letter-spacing:-.02em;line-height:1.15}
+.lieux b{display:block;white-space:nowrap;font-size:clamp(18px,1.7vw,24px);font-weight:500;letter-spacing:-.02em;line-height:1.15}
 .lieux .etq{display:block;margin-top:6px;font-size:9.5px}
 /* infolettre : un champ, un consentement, un bouton vermillon */
 .nl{margin-top:clamp(28px,4.5vh,44px);max-width:520px}
@@ -189,33 +192,32 @@ footer{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;p
     <svg class="porte" width="17" height="20" viewBox="0 0 100 116"><use href="#sym"/></svg>
     <svg width="104" height="11" viewBox="-2 -2 953 104" style="stroke:currentColor" aria-hidden="true"><use href="#wm"/></svg>
   </div>
-  <span class="etq acc">Bientôt · Coming soon</span>
+  <nav class="lng etq"><span class="acc" style="color:var(--vermillon)">Bientôt</span><a href="/" aria-current="page" lang="fr">FR</a><a href="/en/" lang="en" hreflang="en">EN</a></nav>
 </header>
 
 <div class="vert" aria-hidden="true">HÔTEL · MEMENTO · 2027</div>
 
 <main>
   <section>
-    <p class="etq">Ouverture · Opening</p>
+    <p class="etq">Ouverture</p>
     <div class="an" aria-label="2027">2027</div>
     <h1>Porte ouverte <span>sur la ville.</span><span class="sr"> Memento, hôtel à Montréal — ouverture 2027.</span></h1>
     <p class="lead">Des chambres entièrement privées, bâties en usine, posées là où l'hébergement manque. Un café, un resto-bar et un spa sur place. Memento ouvre ses portes en 2027.</p>
-    <p class="en" lang="en">Fully private rooms, built in a factory and placed where lodging is scarce, with a café, a restaurant-bar and a spa on site. Memento opens its doors in 2027.</p>
-    <ul class="lieux" aria-label="Sur place · On site">
+    <ul class="lieux" aria-label="Sur place">
       <li><b>Café</b><span class="etq">Le matin</span></li>
       <li><b>Resto-bar</b><span class="etq">Le soir</span></li>
       <li><b>Spa</b><span class="etq">La pause</span></li>
     </ul>
     <form class="nl" id="nl" novalidate>
-      <h2>Sois parmi les premiers informés. <span lang="en">Be the first to know.</span></h2>
+      <h2>Sois parmi les premiers informés.</h2>
       <div class="nl-row">
-        <label class="sr" for="nl-email">Courriel · Email</label>
+        <label class="sr" for="nl-email">Courriel</label>
         <input id="nl-email" name="EMAIL" type="email" autocomplete="email" placeholder="ton@courriel.com" required>
         <button type="submit">S'inscrire</button>
       </div>
       <input class="hp" type="text" name="email_address_check" tabindex="-1" autocomplete="off" aria-hidden="true">
       <label class="nl-ok"><input type="checkbox" name="OPT_IN" value="1" required>
-        <span>J'accepte de recevoir les nouvelles de Memento (ouverture, offres de lancement). Désabonnement en un clic. <a href="/confidentialite.html">Politique de confidentialité</a>. <span lang="en">I agree to receive news from Memento. Unsubscribe anytime. <a href="/confidentialite.html#en">Privacy policy</a>.</span></span></label>
+        <span>J'accepte de recevoir les nouvelles de Memento (ouverture, offres de lancement). Désabonnement en un clic. <a href="/confidentialite.html">Politique de confidentialité</a>.</span></label>
       <p class="nl-msg" role="status" aria-live="polite"></p>
     </form>
     <div class="sig">
@@ -234,7 +236,7 @@ footer{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;p
 
 <footer>
   <span class="etq">© 2026 Memento · Groupe Capsule Hotels</span>
-  <a class="etq" href="/confidentialite.html" style="text-decoration:none">Confidentialité · Privacy</a>
+  <a class="etq" href="/confidentialite.html" style="text-decoration:none">Confidentialité</a>
 </footer>
 
 <script>
@@ -248,16 +250,16 @@ const BREVO_FORM_URL = 'https://40240a81.sibforms.com/serve/MUIFACaUmlWmCzXZRJhV
     e.preventDefault();
     const email = f.EMAIL.value.trim();
     msg.className = 'nl-msg';
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ msg.classList.add('err'); msg.textContent = 'Courriel invalide · Invalid email'; return; }
-    if(!f.OPT_IN.checked){ msg.classList.add('err'); msg.textContent = 'Coche la case de consentement · Please tick the consent box'; return; }
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ msg.classList.add('err'); msg.textContent = 'Courriel invalide'; return; }
+    if(!f.OPT_IN.checked){ msg.classList.add('err'); msg.textContent = 'Coche la case de consentement'; return; }
     if(f.email_address_check.value) return;
-    if(!BREVO_FORM_URL){ msg.textContent = 'Inscriptions bientôt ouvertes · Sign-ups opening soon'; return; }
+    if(!BREVO_FORM_URL){ msg.textContent = 'Inscriptions bientôt ouvertes'; return; }
     btn.disabled = true;
     const body = new FormData(f); body.append('locale','fr'); body.append('html_type','simple');
     try{
       await fetch(BREVO_FORM_URL, {method:'POST', body, mode:'no-cors'});
-      f.reset(); msg.textContent = 'Merci ! Confirme ton inscription dans le courriel que tu vas recevoir. · Thanks! Check your inbox to confirm.';
-    }catch(_){ msg.classList.add('err'); msg.textContent = 'Erreur, réessaie plus tard · Something went wrong, try again later'; }
+      f.reset(); msg.textContent = 'Merci ! Confirme ton inscription dans le courriel que tu vas recevoir.';
+    }catch(_){ msg.classList.add('err'); msg.textContent = 'Erreur, réessaie plus tard'; }
     btn.disabled = false;
   });
 })();
