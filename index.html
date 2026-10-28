@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Memento Hôtel Montréal — ouverture 2027 | Café, resto-bar et spa</title>
-<meta name="description" content="Memento, un nouvel hôtel à Montréal : chambres entièrement privées bâties en usine, café, resto-bar et spa sur place. Ouverture en 2027.">
+<title>Memento Hôtel — Montréal et Namur (QC), ouverture 2027 | Café, resto-bar et spa</title>
+<meta name="description" content="Memento, un nouvel hôtel à Montréal et à Namur (Québec) : chambres entièrement privées bâties en usine, café, resto-bar et spa sur place. Ouverture en 2027.">
 <link rel="canonical" href="https://mementohotel.ca/">
 <link rel="alternate" hreflang="fr" href="https://mementohotel.ca/">
 <link rel="alternate" hreflang="en" href="https://mementohotel.ca/en/">
@@ -20,7 +20,7 @@
 <meta property="og:locale:alternate" content="en_CA">
 <meta property="og:url" content="https://mementohotel.ca/">
 <meta property="og:title" content="Memento — porte ouverte sur la ville. Ouverture 2027.">
-<meta property="og:description" content="Un nouvel hôtel à Montréal : chambres privées, café, resto-bar et spa. Ouverture en 2027.">
+<meta property="og:description" content="Un nouvel hôtel à Montréal et à Namur (QC) : chambres privées, café, resto-bar et spa. Ouverture en 2027.">
 <meta property="og:image" content="https://mementohotel.ca/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -38,22 +38,86 @@
       "url": "https://mementohotel.ca/",
       "logo": "https://mementohotel.ca/apple-touch-icon.png",
       "slogan": "Porte ouverte sur la ville",
-      "parentOrganization": {"@type": "Organization", "name": "Groupe Capsule Hotels", "url": "https://capsuleshotels.com/"}
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Groupe Capsule Hotels",
+        "url": "https://capsuleshotels.com/"
+      }
     },
     {
       "@type": "Hotel",
-      "@id": "https://mementohotel.ca/#hotel",
-      "name": "Memento",
-      "alternateName": ["Memento Hôtel", "Memento Hotel Montréal"],
-      "description": "Nouvel hôtel à Montréal : chambres entièrement privées bâties en usine, café, resto-bar et spa sur place. Ouverture prévue en 2027.",
+      "@id": "https://mementohotel.ca/#hotel-namur",
+      "name": "Memento Namur",
+      "alternateName": [
+        "Memento Hôtel Namur",
+        "Memento Hotel Namur"
+      ],
+      "description": "Nouvel hôtel Memento à Namur (Québec) : chambres entièrement privées bâties en usine, café, resto-bar et spa sur place. Ouverture prévue en 2027.",
       "url": "https://mementohotel.ca/",
       "image": "https://mementohotel.ca/og.png",
-      "brand": {"@id": "https://mementohotel.ca/#org"},
-      "address": {"@type": "PostalAddress", "addressLocality": "Montréal", "addressRegion": "QC", "addressCountry": "CA"},
+      "brand": {
+        "@id": "https://mementohotel.ca/#org"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Namur",
+        "addressRegion": "QC",
+        "addressCountry": "CA"
+      },
       "amenityFeature": [
-        {"@type": "LocationFeatureSpecification", "name": "Café", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Restaurant-bar", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Spa", "value": true}
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Café",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Restaurant-bar",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Spa",
+          "value": true
+        }
+      ]
+    },
+    {
+      "@type": "Hotel",
+      "@id": "https://mementohotel.ca/#hotel-montreal",
+      "name": "Memento Montréal",
+      "alternateName": [
+        "Memento Hôtel Montréal",
+        "Memento Hotel Montréal"
+      ],
+      "description": "Nouvel hôtel Memento à Montréal : chambres entièrement privées bâties en usine, café, resto-bar et spa sur place. Ouverture prévue en 2027.",
+      "url": "https://mementohotel.ca/",
+      "image": "https://mementohotel.ca/og.png",
+      "brand": {
+        "@id": "https://mementohotel.ca/#org"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Montréal",
+        "addressRegion": "QC",
+        "addressCountry": "CA"
+      },
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Café",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Restaurant-bar",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Spa",
+          "value": true
+        }
       ]
     },
     {
@@ -62,7 +126,9 @@
       "url": "https://mementohotel.ca/",
       "name": "Memento",
       "inLanguage": "fr-CA",
-      "publisher": {"@id": "https://mementohotel.ca/#org"}
+      "publisher": {
+        "@id": "https://mementohotel.ca/#org"
+      }
     }
   ]
 }
@@ -138,6 +204,10 @@ h1 span{font-weight:300}
 @media(prefers-reduced-motion:reduce){.battant{animation:none;transform:scaleX(.22)}}
 
 /* sur place : café, resto-bar, spa */
+/* les villes : deux adresses, une année */
+.villes{list-style:none;margin-top:clamp(24px,4vh,36px);display:flex;flex-wrap:wrap;gap:10px 34px}
+.villes li{display:flex;align-items:baseline;gap:12px}
+.villes b{font-size:clamp(22px,2.3vw,32px);font-weight:500;letter-spacing:-.025em}
 .lieux{list-style:none;margin-top:clamp(26px,4vh,40px);display:grid;grid-template-columns:repeat(3,auto);justify-content:start;max-width:560px;border-top:1px solid var(--line)}
 .lieux li{padding:16px clamp(16px,2.4vw,34px) 0 0;border-right:1px solid var(--line);margin-right:clamp(16px,2.4vw,34px)}
 .lieux li:last-child{border-right:0;margin-right:0}
@@ -201,8 +271,12 @@ footer{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;p
   <section>
     <p class="etq">Ouverture</p>
     <div class="an" aria-label="2027">2027</div>
-    <h1>Porte ouverte <span>sur la ville.</span><span class="sr"> Memento, hôtel à Montréal — ouverture 2027.</span></h1>
-    <p class="lead">Des chambres entièrement privées, bâties en usine, posées là où l'hébergement manque. Un café, un resto-bar et un spa sur place. Memento ouvre ses portes en 2027.</p>
+    <h1>Porte ouverte <span>sur la ville.</span><span class="sr"> Memento, hôtel à Montréal et à Namur (Québec) — ouverture 2027.</span></h1>
+    <p class="lead">Des chambres entièrement privées, bâties en usine, posées là où l'hébergement manque. Un café, un resto-bar et un spa sur place. Memento ouvre ses portes à Montréal et à Namur en 2027.</p>
+    <ul class="villes" aria-label="Ouvertures 2027">
+      <li><b>Montréal</b><span class="etq acc">2027</span></li>
+      <li><b>Namur (QC)</b><span class="etq acc">2027</span></li>
+    </ul>
     <ul class="lieux" aria-label="Sur place">
       <li><b>Café</b><span class="etq">Le matin</span></li>
       <li><b>Resto-bar</b><span class="etq">Le soir</span></li>
