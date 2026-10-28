@@ -3,8 +3,70 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Memento — bientôt, 2027</title>
-<meta name="description" content="Memento ouvre en 2027. Porte ouverte sur la ville. — Memento opens in 2027.">
+<title>Memento Hôtel Montréal — ouverture 2027 | Café, resto-bar et spa</title>
+<meta name="description" content="Memento, un nouvel hôtel à Montréal : chambres entièrement privées bâties en usine, café, resto-bar et spa sur place. Ouverture en 2027. — A new Montréal hotel opening in 2027.">
+<link rel="canonical" href="https://mementohotel.ca/">
+<link rel="alternate" hreflang="fr-CA" href="https://mementohotel.ca/">
+<link rel="alternate" hreflang="en" href="https://mementohotel.ca/">
+<link rel="alternate" hreflang="x-default" href="https://mementohotel.ca/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0B0B0C">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Memento">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_CA">
+<meta property="og:url" content="https://mementohotel.ca/">
+<meta property="og:title" content="Memento — porte ouverte sur la ville. Ouverture 2027.">
+<meta property="og:description" content="Un nouvel hôtel à Montréal : chambres privées, café, resto-bar et spa. Ouverture en 2027.">
+<meta property="og:image" content="https://mementohotel.ca/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Memento — 2027. Porte ouverte sur la ville.">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://mementohotel.ca/#org",
+      "name": "Memento",
+      "url": "https://mementohotel.ca/",
+      "logo": "https://mementohotel.ca/apple-touch-icon.png",
+      "slogan": "Porte ouverte sur la ville",
+      "parentOrganization": {"@type": "Organization", "name": "Groupe Capsule Hotels", "url": "https://capsuleshotels.com/"}
+    },
+    {
+      "@type": "Hotel",
+      "@id": "https://mementohotel.ca/#hotel",
+      "name": "Memento",
+      "alternateName": ["Memento Hôtel", "Memento Hotel Montréal"],
+      "description": "Nouvel hôtel à Montréal : chambres entièrement privées bâties en usine, café, resto-bar et spa sur place. Ouverture prévue en 2027.",
+      "url": "https://mementohotel.ca/",
+      "image": "https://mementohotel.ca/og.png",
+      "brand": {"@id": "https://mementohotel.ca/#org"},
+      "address": {"@type": "PostalAddress", "addressLocality": "Montréal", "addressRegion": "QC", "addressCountry": "CA"},
+      "amenityFeature": [
+        {"@type": "LocationFeatureSpecification", "name": "Café", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Restaurant-bar", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Spa", "value": true}
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mementohotel.ca/#site",
+      "url": "https://mementohotel.ca/",
+      "name": "Memento",
+      "inLanguage": ["fr-CA", "en"],
+      "publisher": {"@id": "https://mementohotel.ca/#org"}
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -34,6 +96,7 @@ body{
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
   min-height:100svh;display:flex;flex-direction:column;
 }
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 ::selection{background:var(--vermillon);color:var(--encre)}
 
 .etq{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--beton)}
@@ -118,9 +181,9 @@ footer{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;p
   <section>
     <p class="etq">Ouverture · Opening</p>
     <div class="an" aria-label="2027">2027</div>
-    <h1>Porte ouverte <span>sur la ville.</span></h1>
+    <h1>Porte ouverte <span>sur la ville.</span><span class="sr"> Memento, hôtel à Montréal — ouverture 2027.</span></h1>
     <p class="lead">Des chambres entièrement privées, bâties en usine, posées là où l'hébergement manque. Un café, un resto-bar et un spa sur place. Memento ouvre ses portes en 2027.</p>
-    <p class="en">Fully private rooms, built in a factory and placed where lodging is scarce, with a café, a restaurant-bar and a spa on site. Memento opens its doors in 2027.</p>
+    <p class="en" lang="en">Fully private rooms, built in a factory and placed where lodging is scarce, with a café, a restaurant-bar and a spa on site. Memento opens its doors in 2027.</p>
     <ul class="lieux" aria-label="Sur place · On site">
       <li><b>Café</b><span class="etq">Le matin</span></li>
       <li><b>Resto-bar</b><span class="etq">Le soir</span></li>

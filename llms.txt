@@ -1,0 +1,14 @@
+# Memento
+
+> Memento is a new hotel brand in Montréal, Québec, from Groupe Capsule Hotels, opening in 2027. Fully private rooms built in a factory, with a café, a restaurant-bar and a spa on site. Signature: « Porte ouverte sur la ville ».
+
+- Site: https://mementohotel.ca/
+- Status: coming soon, opening 2027
+- City: Montréal, QC, Canada
+- On site: café, restaurant-bar, spa
+- Languages: French (primary), English
+- Parent company: Groupe Capsule Hotels (https://capsuleshotels.com/)
+
+## FR
+
+Memento est une nouvelle marque d'hôtel à Montréal, du Groupe Capsule Hotels, qui ouvre en 2027 : chambres entièrement privées bâties en usine, café, resto-bar et spa sur place.
