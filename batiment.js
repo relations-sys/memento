@@ -85,7 +85,6 @@
         const on = nuit && lit(i);
         if (mem && n === POINT[0] && cx === POINT[1]) {
           // la fenêtre vermillon : un hublot sous une pellicule vermillon translucide
-          // ronde, sans cadre-porte : un hublot dans la porte
           const cy = y + h / 2, r = w / 2;
           const clip = el('clipPath', { id: 'hublot' }, defs);
           el('circle', { cx, cy, r }, clip);
