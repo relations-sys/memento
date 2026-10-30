@@ -84,9 +84,12 @@
         const w = mem ? 46 : 44, h = 58, x = cx - w / 2, y = top + 18;
         const on = nuit && lit(i);
         if (mem && n === POINT[0] && cx === POINT[1]) {
-          // la fenêtre-logo : la porte et son point vermillon, au 2/3 de la hauteur du cadre
+          // la fenêtre vermillon : vitre ordinaire sous une pellicule vermillon translucide
           el('path', { d: `M${x - 7} ${y + h + 10} V${y - 8} H${x + w + 7} V${y + h + 10}`, fill: 'none', stroke: nuit ? C.craie : C.beton, 'stroke-width': 4.2 });
-          el('circle', { cx, cy: y - 8 + (h + 18) * 2 / 3, r: 19, fill: C.vermillon, filter: nuit ? 'url(#glow)' : '' });
+          el('rect', { x, y, width: w, height: h, fill: nuit ? C.craie : C.graphite });
+          el('rect', { x, y, width: w, height: h, fill: C.vermillon, opacity: nuit ? .82 : .78, filter: nuit ? 'url(#glow)' : '' });
+          el('path', { d: `M${x} ${y + h * .55} L${x + w * .55} ${y} H${x + w * .8} L${x} ${y + h * .85}Z`, fill: C.craie, opacity: nuit ? .1 : .22 });
+          el('line', { x1: cx, x2: cx, y1: y, y2: y + h, stroke: C.encre, 'stroke-width': 1.2, opacity: .7 });
           i++;
           return;
         }
