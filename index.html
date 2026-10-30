@@ -171,7 +171,8 @@ body{
 
 /* ---------- chrome ---------- */
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:22px var(--gut);border-bottom:1px solid var(--line)}
-.lng{display:flex;gap:14px;align-items:center}
+.lng{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px 14px;align-items:center}
+@media(max-width:560px){.topbar{gap:12px}.lng{gap:8px 11px}}
 .lng a{text-decoration:none;color:var(--beton)}
 .lng a[aria-current]{color:var(--craie)}
 .topbar .mk{display:flex;align-items:center;gap:12px}
@@ -215,6 +216,8 @@ h1 span{font-weight:300}
 .lieux .etq{display:block;margin-top:6px;font-size:9.5px}
 .voir{display:inline-flex;align-items:center;gap:12px;margin-top:clamp(22px,3.4vh,32px);color:var(--craie);text-decoration:none;font-size:15px;font-weight:500;border:1px solid rgba(241,237,230,.5);padding:13px 18px;transition:background .2s,color .2s}
 .voir:hover{background:var(--craie);color:var(--encre)}
+.voirs{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(22px,3.4vh,32px)}
+.voirs .voir{margin-top:0}
 /* infolettre : un champ, un consentement, un bouton vermillon */
 .nl{margin-top:clamp(28px,4.5vh,44px);max-width:520px}
 .nl h2{font-size:clamp(19px,1.7vw,24px);font-weight:500;letter-spacing:-.02em;line-height:1.2}
@@ -264,7 +267,7 @@ footer{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;p
     <svg class="porte" width="17" height="20" viewBox="0 0 100 116"><use href="#sym"/></svg>
     <svg width="104" height="11" viewBox="-2 -2 953 104" style="stroke:currentColor" aria-hidden="true"><use href="#wm"/></svg>
   </div>
-  <nav class="lng etq"><span class="acc" style="color:var(--vermillon)">Bientôt</span><a href="/batiment.html" style="color:var(--craie)">Le bâtiment</a><a href="/" aria-current="page" lang="fr">FR</a><a href="/en/" lang="en" hreflang="en">EN</a></nav>
+  <nav class="lng etq"><span class="acc" style="color:var(--vermillon)">Bientôt</span><a href="/batiment.html" style="color:var(--craie)">Montréal</a><a href="/namur.html" style="color:var(--craie)">Namur</a><a href="/" aria-current="page" lang="fr">FR</a><a href="/en/" lang="en" hreflang="en">EN</a></nav>
 </header>
 
 <div class="vert" aria-hidden="true">HÔTEL · MEMENTO · 2027</div>
@@ -284,7 +287,7 @@ footer{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;p
       <li><b>Resto-bar</b><span class="etq">Le soir</span></li>
       <li><b>Spa</b><span class="etq">La pause</span></li>
     </ul>
-    <a class="voir" href="/batiment.html">Voir le bâtiment de Montréal <span aria-hidden="true">→</span></a>
+    <div class="voirs"><a class="voir" href="/batiment.html">Voir le bâtiment de Montréal <span aria-hidden="true">→</span></a><a class="voir" href="/namur.html">Voir le bâtiment de Namur <span aria-hidden="true">→</span></a></div>
     <form class="nl" id="nl" novalidate>
       <h2>Sois parmi les premiers informés.</h2>
       <div class="nl-row">

@@ -50,7 +50,8 @@ a{color:inherit}
 
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:22px var(--gut);border-bottom:1px solid var(--line)}
 .topbar .mk{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--craie)}
-.lng{display:flex;gap:14px;align-items:center}
+.lng{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px 14px;align-items:center}
+@media(max-width:560px){.topbar{gap:12px}.lng{gap:8px 11px}}
 .lng a{text-decoration:none;color:var(--beton)}
 .lng a[aria-current]{color:var(--craie)}
 .vert{position:fixed;left:16px;top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font-family:var(--mono);font-size:9px;letter-spacing:.3em;color:var(--beton)}
@@ -147,7 +148,7 @@ footer a{text-decoration:none}
     <svg class="porte" width="17" height="20" viewBox="0 0 100 116"><use href="#sym"/></svg>
     <svg width="104" height="11" viewBox="-2 -2 953 104" style="stroke:currentColor" aria-hidden="true"><use href="#wm"/></svg>
   </a>
-  <nav class="lng etq"><a href="/">← Accueil</a><a href="/batiment.html" aria-current="page" lang="fr">FR</a><a href="/en/building.html" lang="en" hreflang="en">EN</a></nav>
+  <nav class="lng etq"><a href="/">← Accueil</a><a href="/batiment.html" aria-current="page">Montréal</a><a href="/namur.html">Namur</a><a href="/batiment.html" aria-current="page" lang="fr">FR</a><a href="/en/building.html" lang="en" hreflang="en">EN</a></nav>
 </header>
 
 <div class="vert" aria-hidden="true">HÔTEL · MEMENTO · MONTRÉAL</div>

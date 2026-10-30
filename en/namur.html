@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The building — Memento Namur (QC), opening 2027</title>
+<meta name="description" content="Explore the Memento building in Namur, Québec: 28 private rooms over two floors, a resto-bar with a fireplace and a modular spa, surrounded by nature. Opening in 2027.">
+<link rel="canonical" href="https://mementohotel.ca/en/namur.html">
+<link rel="alternate" hreflang="fr" href="https://mementohotel.ca/namur.html">
+<link rel="alternate" hreflang="en" href="https://mementohotel.ca/en/namur.html">
+<link rel="alternate" hreflang="x-default" href="https://mementohotel.ca/namur.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0B0B0C">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Memento">
+<meta property="og:locale" content="en_CA">
+<meta property="og:url" content="https://mementohotel.ca/en/namur.html">
+<meta property="og:title" content="Memento Namur — hotel and spa, 2027">
+<meta property="og:description" content="28 private rooms, a resto-bar with a fireplace and a spa, surrounded by nature.">
+<meta property="og:image" content="https://mementohotel.ca/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   MEMENTO — the building (EN copy of /batiment.html). Façade sud redessinée sur la charte v1.0 :
+   encre dominante, fenêtres-portes, enseigne verticale, un seul point.
+   ============================================================ */
+:root{
+  --encre:#0B0B0C;
+  --graphite:#232326;
+  --beton:#A7A39C;
+  --craie:#F1EDE6;
+  --vermillon:#FF4F1F;
+  --line:rgba(241,237,230,.14);
+  --grotesk:"Space Grotesk",system-ui,sans-serif;
+  --mono:"Space Mono",ui-monospace,monospace;
+  --gut:clamp(20px,4.4vw,74px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--encre);color:var(--craie);font-family:var(--grotesk);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--vermillon);color:var(--encre)}
+a{color:inherit}
+.etq{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--beton)}
+.porte{display:block;stroke:currentColor;fill:none}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:22px var(--gut);border-bottom:1px solid var(--line)}
+.topbar .mk{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--craie)}
+.lng{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px 14px;align-items:center}
+@media(max-width:560px){.topbar{gap:12px}.lng{gap:8px 11px}}
+.lng a{text-decoration:none;color:var(--beton)}
+.lng a[aria-current]{color:var(--craie)}
+.vert{position:fixed;left:16px;top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font-family:var(--mono);font-size:9px;letter-spacing:.3em;color:var(--beton)}
+@media(max-width:900px){.vert{display:none}}
+
+/* ---------- en-tête ---------- */
+.intro{padding:clamp(44px,8vh,96px) var(--gut) clamp(28px,4vh,44px);max-width:1180px}
+h1{font-size:clamp(34px,5.4vw,82px);font-weight:600;line-height:1.04;letter-spacing:-.03em;margin-top:18px}
+h1 span{font-weight:300}
+.lead{font-size:clamp(16px,1.5vw,22px);line-height:1.45;letter-spacing:-.01em;color:#D3CFC7;max-width:46ch;margin-top:22px}
+
+/* ---------- la scène ---------- */
+.scene{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media(max-width:900px){.scene{grid-template-columns:minmax(0,1fr)}}
+.stage{position:relative;background:var(--craie);transition:background .8s ease;min-height:clamp(520px,82vh,900px);display:flex;flex-direction:column}
+.stage.nuit{background:var(--encre)}
+.ctrl{display:flex;flex-wrap:wrap;gap:10px;padding:18px clamp(16px,2.4vw,30px);position:relative;z-index:2}
+.seg{display:flex;border:1px solid rgba(11,11,12,.25)}
+.stage.nuit .seg{border-color:rgba(241,237,230,.3)}
+.seg button{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;background:transparent;border:0;color:#5c5954;padding:10px 14px;cursor:pointer}
+.stage.nuit .seg button{color:var(--beton)}
+.seg button[aria-pressed="true"]{background:var(--encre);color:var(--craie)}
+.stage.nuit .seg button[aria-pressed="true"]{background:var(--craie);color:var(--encre)}
+.seg button:focus-visible{outline:2px solid var(--vermillon);outline-offset:2px}
+#facade{width:100%;height:clamp(480px,calc(100svh - 120px),900px);display:block;padding:0 clamp(8px,2vw,24px) 34px}
+.legende{position:absolute;right:clamp(16px,2.4vw,30px);bottom:16px;color:#5c5954;font-size:9.5px}
+.stage.nuit .legende{color:var(--beton)}
+
+/* étages interactifs */
+.fl{cursor:pointer}
+.fl rect.hit{fill:transparent}
+.fl:hover rect.hit,.fl.on rect.hit{fill:rgba(255,79,31,.07)}
+.fl .tick{opacity:0;transition:opacity .2s}
+.fl:hover .tick,.fl.on .tick{opacity:1}
+
+/* ---------- panneau ---------- */
+.panneau{padding:clamp(28px,4vw,52px) clamp(20px,3vw,48px);border-left:1px solid var(--line);display:flex;flex-direction:column;gap:26px}
+@media(max-width:900px){.panneau{border-left:0;border-top:1px solid var(--line)}}
+.detail h2{font-size:clamp(26px,2.6vw,38px);font-weight:500;letter-spacing:-.025em;line-height:1.1;margin-top:10px}
+.detail p{color:#D3CFC7;margin-top:10px;max-width:40ch}
+.pile{list-style:none;border-top:1px solid var(--line)}
+.pile li{border-bottom:1px solid var(--line)}
+.pile button{all:unset;box-sizing:border-box;width:100%;display:flex;justify-content:space-between;gap:16px;padding:11px 0;cursor:pointer;font-size:15px}
+.pile button .etq{font-size:9.5px;align-self:center}
+.pile button:hover,.pile button[aria-current="true"]{color:var(--craie)}
+.pile button[aria-current="true"] .n{font-weight:600}
+.pile button:focus-visible{outline:2px solid var(--vermillon);outline-offset:2px}
+.pile .n{color:#D3CFC7}
+
+/* ---------- ce qui change ---------- */
+.bloc{padding:clamp(56px,10vh,120px) var(--gut);border-bottom:1px solid var(--line)}
+.bloc>h2{font-size:clamp(28px,3.6vw,52px);font-weight:600;letter-spacing:-.03em;line-height:1.06;max-width:20ch;margin-top:14px}
+.bloc>h2 span{font-weight:300}
+.changes{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0;margin-top:clamp(32px,5vh,56px);border-top:1px solid var(--line)}
+.changes li{padding:22px 26px 26px 0;border-right:1px solid var(--line);margin-right:26px}
+.changes li:last-child{border-right:0}
+@media(max-width:620px){.changes li{border-right:0;margin-right:0;border-bottom:1px solid var(--line)}}
+.changes .etq{display:block}
+.changes b{display:block;font-size:20px;font-weight:500;letter-spacing:-.02em;line-height:1.2;margin-top:12px}
+.changes p{color:#B9B5AE;font-size:14.5px;margin-top:8px}
+
+.chiffres{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(32px,5vh,56px);border-top:1px solid var(--line)}
+@media(max-width:760px){.chiffres{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.chiffres li{padding:22px 16px 0 0}
+.chiffres b{display:block;font-size:clamp(40px,5.4vw,76px);font-weight:300;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.chiffres .etq{display:block;margin-top:10px}
+
+.note{padding:26px var(--gut);color:var(--beton);font-size:13px;max-width:900px}
+footer{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;padding:20px var(--gut);border-top:1px solid var(--line)}
+footer a{text-decoration:none}
+/* Namur : façade horizontale, la scène épouse le dessin */
+.stage{min-height:0}
+#facade{padding-bottom:28px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="wm" fill="none" stroke-width="2.15" stroke-linecap="butt" stroke-linejoin="miter">
+    <path d="M1.1,100 V1.1 H111.9 V100"/>
+    <path d="M155,0 V100"/><path d="M155,1.1 H240"/><path d="M155,50 H226"/><path d="M155,98.9 H240"/>
+    <path d="M290,100 V1.1 L338.5,58 L387,1.1 V100"/>
+    <path d="M437,0 V100"/><path d="M437,1.1 H522"/><path d="M437,50 H508"/><path d="M437,98.9 H522"/>
+    <path d="M578,100 V1.1 L663,98.9 V0"/>
+    <path d="M719,1.1 H804"/><path d="M761.5,0 V100"/>
+    <ellipse cx="902.5" cy="50" rx="47" ry="48.9"/>
+  </g>
+  <g id="sym">
+    <path d="M3.5,116 V3.5 H96.5 V116" fill="none" stroke-width="7"/>
+    <circle cx="50" cy="77.3" r="9.5" fill="#FF4F1F" stroke="none"/>
+  </g>
+</defs></svg>
+
+<header class="topbar">
+  <a class="mk" href="/" aria-label="Memento — home">
+    <svg class="porte" width="17" height="20" viewBox="0 0 100 116"><use href="#sym"/></svg>
+    <svg width="104" height="11" viewBox="-2 -2 953 104" style="stroke:currentColor" aria-hidden="true"><use href="#wm"/></svg>
+  </a>
+  <nav class="lng etq"><a href="/en/">← Home</a><a href="/en/building.html">Montréal</a><a href="/en/namur.html" aria-current="page">Namur</a><a href="/namur.html" lang="fr" hreflang="fr">FR</a><a href="/en/namur.html" aria-current="page" lang="en">EN</a></nav>
+</header>
+
+<div class="vert" aria-hidden="true">HÔTEL · MEMENTO · NAMUR</div>
+
+<section class="intro">
+  <p class="etq">The building · Namur (QC) · 2027</p>
+  <h1>Open door <span>to the forest.</span></h1>
+  <p class="lead">Two floors of private rooms, a stone lobby, a resto-bar with a fireplace and a spa set at the end of the hotel, backed by the forest. Hover the façade to explore each space, switch to night to watch the hotel light up.</p>
+</section>
+
+<section class="scene" aria-label="Interactive façade">
+  <div class="stage" id="stage">
+    <div class="ctrl">
+      <div class="seg" role="group" aria-label="Time of day">
+        <button type="button" data-m="jour" aria-pressed="true">Day</button>
+        <button type="button" data-m="nuit" aria-pressed="false">Night</button>
+      </div>
+    </div>
+    <svg id="facade" style="height:auto;margin:auto 0" viewBox="10 120 900 280" role="img" aria-labelledby="fac-t">
+      <title id="fac-t">South façade of the Memento building in Namur: two floors of rooms, a stone stair tower, a glazed lobby, the resto-bar and the spa modules against the forest.</title>
+    </svg>
+    <p class="etq legende" id="legende">South façade · approx. 1:250</p>
+  </div>
+
+  <aside class="panneau">
+    <div class="detail" aria-live="polite">
+      <p class="etq" id="d-etq">Space</p>
+      <h2 id="d-titre">—</h2>
+      <p id="d-txt"></p>
+    </div>
+    <ul class="pile" id="pile" aria-label="Spaces"></ul>
+  </aside>
+</section>
+
+<section class="bloc">
+  <p class="etq">The façade</p>
+  <h2>Five moves <span>for a Memento in the forest.</span></h2>
+  <ul class="changes">
+    <li><span class="etq">01 · Material</span><b>Ink-coloured wood</b><p>The vertical wood siding is stained ink-black: a dark, matte building that melts into the spruce at dusk.</p></li>
+    <li><span class="etq">02 · Windows</span><b>Every window is a door</b><p>A concrete frame, open at the bottom, surrounds each room. At the top right, a single vermilion frame.</p></li>
+    <li><span class="etq">03 · Sign</span><b>The vertical line</b><p>The stone stair tower carries “HÔTEL · MEMENTO · NAMUR”, and the logotype sits above the resto-bar.</p></li>
+    <li><span class="etq">04 · Resto-bar</span><b>A full-width window</b><p>The resto-bar opens end to end: you see the fireplace and the bar from the road, especially at night.</p></li>
+    <li><span class="etq">05 · Spa</span><b>Graphite modules</b><p>The spa sits in dark modules, cut with two tall door-shaped windows.</p></li>
+  </ul>
+  <ul class="chiffres" aria-label="The building in numbers">
+    <li><b>28</b><span class="etq">Private rooms</span></li>
+    <li><b>2</b><span class="etq">Storeys</span></li>
+    <li><b>1,381</b><span class="etq">Sq ft resto-bar</span></li>
+    <li><b>31 m</b><span class="etq">Of frontage</span></li>
+  </ul>
+</section>
+
+<p class="note">Concept image based on the project’s architectural plans (March 2026). Materials, signage and fit-out are shown for illustration and may change.</p>
+
+<footer>
+  <span class="etq">© 2026 Memento · Groupe Capsule Hotels</span>
+  <a class="etq" href="/confidentialite.html#en">Privacy</a>
+</footer>
+
+<script>
+/* Namur spaces: data from the plans (ground floor and 2nd floor: 14 rooms each). */
+const L = {
+  resto:'CAFÉ · RESTO-BAR',
+  floors:[
+    {k:'e2', n:'2nd floor', t:'Rooms', d:'Fourteen private rooms, each with its own shower and toilet, including one accessible room.'},
+    {k:'rdc', n:'GF', t:'Rooms', d:'Fourteen more ground-floor rooms on either side of a central corridor, including one accessible room.'},
+    {k:'accueil', n:'Lobby', t:'Reception', d:'The stone lobby links the hotel and the resto-bar: you come in through the door, between the two wings.'},
+    {k:'resto', n:'Resto-bar', t:'Café and resto-bar', d:'A room of about 1,400 sq ft around a fireplace and a long bar: café in the morning, resto-bar at night.'},
+    {k:'spa', n:'Spa', t:'The spa', d:'Modules set at the end of the hotel, made for slowing down: the Memento spa, open to the landscape.'}
+  ]
+};
+</script>
+<script src="/namur.js"></script>
+</body>
+</html>
