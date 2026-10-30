@@ -84,9 +84,8 @@
         const w = mem ? 46 : 44, h = 58, x = cx - w / 2, y = top + 18;
         const on = nuit && lit(i);
         if (mem && n === POINT[0] && cx === POINT[1]) {
-          // la fenêtre vermillon : vitre ordinaire sous une pellicule vermillon translucide
-          el('path', { d: `M${x - 7} ${y + h + 10} V${y - 8} H${x + w + 7} V${y + h + 10}`, fill: 'none', stroke: nuit ? C.craie : C.beton, 'stroke-width': 4.2 });
-          // ronde : un hublot dans la porte
+          // la fenêtre vermillon : un hublot sous une pellicule vermillon translucide
+          // ronde, sans cadre-porte : un hublot dans la porte
           const cy = y + h / 2, r = w / 2;
           const clip = el('clipPath', { id: 'hublot' }, defs);
           el('circle', { cx, cy, r }, clip);
