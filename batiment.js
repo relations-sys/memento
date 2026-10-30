@@ -81,10 +81,12 @@
       }
       [160, 240, 320].forEach(cx => {
         const w = mem ? 46 : 44, h = 58, x = cx - w / 2, y = top + 18;
-        const on = nuit && lit(i++);
+        const on = nuit && (lit(i++) || (n === NF && cx === 320));   // la fenêtre du coin reste allumée
         if (mem) {
           // la porte : cadre béton ouvert vers le bas
-          el('path', { d: `M${x - 7} ${y + h + 10} V${y - 8} H${x + w + 7} V${y + h + 10}`, fill: 'none', stroke: C.beton, 'stroke-width': 3.2, opacity: nuit ? .55 : 1 });
+          // la fenêtre du coin, en haut à droite : le seul cadre vermillon de la façade
+          const signe = n === NF && cx === 320;
+          el('path', { d: `M${x - 7} ${y + h + 10} V${y - 8} H${x + w + 7} V${y + h + 10}`, fill: 'none', stroke: signe ? C.vermillon : C.beton, 'stroke-width': signe ? 4 : 3.2, opacity: nuit && !signe ? .55 : 1, filter: nuit && signe ? 'url(#glow)' : '' });
         }
         el('rect', { x, y, width: w, height: h, fill: on ? C.craie : (mem ? (nuit ? C.encre : C.graphite) : (nuit ? '#1b1b1c' : C.graphite)), opacity: on ? .92 : 1, filter: on ? 'url(#glow)' : '' });
         if (!on && !nuit) el('path', { d: `M${x} ${y + h * .55} L${x + w * .55} ${y} H${x + w * .8} L${x} ${y + h * .85}Z`, fill: C.beton, opacity: .14 });
@@ -118,13 +120,13 @@
       const ex = XB + 12, ew = X1 - XB - 24, ey = rTop + 4;
       el('rect', { x: ex, y: ey, width: ew, height: G - ey, fill: nuit ? C.craie : C.encre, opacity: nuit ? .75 : 1 });
       el('path', { d: `M${ex} ${G} V${ey} H${ex + ew} V${G}`, fill: 'none', stroke: C.craie, 'stroke-width': 4 });
-      // enseigne drapeau : le seul point vermillon de la façade
+      // enseigne drapeau (point craie : le vermillon est réservé à la fenêtre du coin)
       const sx = X0 - 34, sy = yAt(116.5);
       el('line', { x1: sx + 24, x2: X0, y1: sy + 10, y2: sy + 10, stroke: C.beton, 'stroke-width': 2 });
       el('line', { x1: sx + 24, x2: X0, y1: sy + 98, y2: sy + 98, stroke: C.beton, 'stroke-width': 2 });
       el('rect', { x: sx, y: sy, width: 26, height: 108, fill: C.encre, stroke: C.craie, 'stroke-width': 1.2, filter: nuit ? 'url(#glow)' : '' });
       el('path', { d: `M${sx + 6} ${sy + 34} V${sy + 10} H${sx + 20} V${sy + 34}`, fill: 'none', stroke: C.craie, 'stroke-width': 1.6 });
-      el('circle', { cx: sx + 13, cy: sy + 27, r: 2.4, fill: C.vermillon });
+      el('circle', { cx: sx + 13, cy: sy + 27, r: 2.4, fill: C.craie });
       const m = el('text', { x: 0, y: 0, transform: `translate(${sx + 16.5} ${sy + 44}) rotate(90)`, 'font-family': 'Space Grotesk, sans-serif', 'font-weight': 500, 'font-size': 9.5, 'letter-spacing': 2.2, fill: C.craie });
       m.textContent = 'MEMENTO';
     } else {
