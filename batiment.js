@@ -117,14 +117,14 @@
       // l'entrée : la porte, dans la cage d'escalier
       const ex = XB + 12, ew = X1 - XB - 24, ey = rTop + 4;
       el('rect', { x: ex, y: ey, width: ew, height: G - ey, fill: nuit ? C.craie : C.encre, opacity: nuit ? .75 : 1 });
-      el('path', { d: `M${ex} ${G} V${ey} H${ex + ew} V${G}`, fill: 'none', stroke: C.vermillon, 'stroke-width': 4, filter: nuit ? 'url(#glow)' : '' });   // la porte d'entrée : le seul vermillon de la façade
-      // enseigne drapeau (point craie : le vermillon est réservé au cadre de l'entrée)
+      el('path', { d: `M${ex} ${G} V${ey} H${ex + ew} V${G}`, fill: 'none', stroke: C.craie, 'stroke-width': 4 });
+      // enseigne drapeau : le seul point vermillon de la façade
       const sx = X0 - 34, sy = yAt(116.5);
       el('line', { x1: sx + 24, x2: X0, y1: sy + 10, y2: sy + 10, stroke: C.beton, 'stroke-width': 2 });
       el('line', { x1: sx + 24, x2: X0, y1: sy + 98, y2: sy + 98, stroke: C.beton, 'stroke-width': 2 });
       el('rect', { x: sx, y: sy, width: 26, height: 108, fill: C.encre, stroke: C.craie, 'stroke-width': 1.2, filter: nuit ? 'url(#glow)' : '' });
       el('path', { d: `M${sx + 6} ${sy + 34} V${sy + 10} H${sx + 20} V${sy + 34}`, fill: 'none', stroke: C.craie, 'stroke-width': 1.6 });
-      el('circle', { cx: sx + 13, cy: sy + 27, r: 2.4, fill: C.craie });
+      el('circle', { cx: sx + 13, cy: sy + 27, r: 2.4, fill: C.vermillon });
       const m = el('text', { x: 0, y: 0, transform: `translate(${sx + 16.5} ${sy + 44}) rotate(90)`, 'font-family': 'Space Grotesk, sans-serif', 'font-weight': 500, 'font-size': 9.5, 'letter-spacing': 2.2, fill: C.craie });
       m.textContent = 'MEMENTO';
     } else {
