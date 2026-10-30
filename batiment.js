@@ -84,9 +84,9 @@
         const w = mem ? 46 : 44, h = 58, x = cx - w / 2, y = top + 18;
         const on = nuit && lit(i);
         if (mem && n === POINT[0] && cx === POINT[1]) {
-          // la fenêtre-logo : la porte et son point vermillon, au 2/3 de la hauteur du cadre
-          el('path', { d: `M${x - 7} ${y + h + 10} V${y - 8} H${x + w + 7} V${y + h + 10}`, fill: 'none', stroke: nuit ? C.craie : C.beton, 'stroke-width': 4.2 });
-          el('circle', { cx, cy: y - 8 + (h + 18) * 2 / 3, r: 19, fill: C.vermillon, filter: nuit ? 'url(#glow)' : '' });
+          // la fenêtre-logo : la porte, jambes prolongées, et son point vermillon posé bas
+          el('path', { d: `M${x - 7} ${y + h + 24} V${y - 8} H${x + w + 7} V${y + h + 24}`, fill: 'none', stroke: nuit ? C.craie : C.beton, 'stroke-width': 4.2 });
+          el('circle', { cx, cy: y + h + 2, r: 14, fill: C.vermillon, filter: nuit ? 'url(#glow)' : '' });
           i++;
           return;
         }
