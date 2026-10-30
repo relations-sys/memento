@@ -85,13 +85,12 @@
         const on = nuit && lit(i);
         if (mem && n === POINT[0] && cx === POINT[1]) {
           // la fenêtre vermillon : un hublot sous une pellicule vermillon translucide
-          const cy = y + h / 2, r = w / 2;
+          const cy = y + h / 2, r = 36;   // plus grand que la baie : déborde du rang de fenêtres
           const clip = el('clipPath', { id: 'hublot' }, defs);
           el('circle', { cx, cy, r }, clip);
           el('circle', { cx, cy, r, fill: nuit ? C.craie : C.graphite });
           el('circle', { cx, cy, r, fill: C.vermillon, opacity: nuit ? .82 : .78, filter: nuit ? 'url(#glow)' : '' });
           el('path', { d: `M${x} ${cy + r * .1} L${x + w * .55} ${cy - r} H${x + w * .8} L${x} ${cy + r * .7}Z`, fill: C.craie, opacity: nuit ? .1 : .22, 'clip-path': 'url(#hublot)' });
-          el('line', { x1: cx, x2: cx, y1: cy - r, y2: cy + r, stroke: C.encre, 'stroke-width': 1.2, opacity: .7 });
           el('circle', { cx, cy, r, fill: 'none', stroke: C.encre, 'stroke-width': 1.5 });
           i++;
           return;
