@@ -213,6 +213,8 @@ h1 span{font-weight:300}
 .lieux li:last-child{border-right:0;margin-right:0}
 .lieux b{display:block;white-space:nowrap;font-size:clamp(18px,1.7vw,24px);font-weight:500;letter-spacing:-.02em;line-height:1.15}
 .lieux .etq{display:block;margin-top:6px;font-size:9.5px}
+.voir{display:inline-flex;align-items:center;gap:10px;margin-top:clamp(20px,3vh,28px);color:var(--craie);text-decoration:none;font-size:15px;border-bottom:1px solid rgba(241,237,230,.34);padding-bottom:4px}
+.voir:hover{border-color:var(--craie)}
 /* infolettre : un champ, un consentement, un bouton vermillon */
 .nl{margin-top:clamp(28px,4.5vh,44px);max-width:520px}
 .nl h2{font-size:clamp(19px,1.7vw,24px);font-weight:500;letter-spacing:-.02em;line-height:1.2}
@@ -282,6 +284,7 @@ footer{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;p
       <li><b>Restaurant-bar</b><span class="etq">Evenings</span></li>
       <li><b>Spa</b><span class="etq">Unwind</span></li>
     </ul>
+    <a class="voir" href="/en/building.html">See the Montréal building <span aria-hidden="true">→</span></a>
     <form class="nl" id="nl" novalidate>
       <h2>Be the first to know.</h2>
       <div class="nl-row">
