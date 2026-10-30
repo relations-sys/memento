@@ -8,15 +8,18 @@
   const stage = document.getElementById('stage');
   const state = { v: 'memento', m: 'jour', on: 'rdc' };
 
-  const G = 840;                       // niveau du sol
+  const G = 840 + 95 * 7;              // niveau du sol (le dessin d'origine comptait 7 étages)
   const X0 = 120, XB = 360, X1 = 437.5; // corps principal | cage d'escalier | limite
+  const NF = 14;                       // étages hors sol (RDC compris)
+  const TOP = 109 + 9.5 * (NF - 1);    // dessus du dernier étage, en pieds
+  const PAR = TOP + 5.6, MEZ = TOP + 12, MEZR = TOP + 12.7; // parapet, pavillon, toit du pavillon
   const yAt = ft => G - (ft - 100) * 10;
   const FLOORS = [];                   // [clé, bas, haut] en pieds
   FLOORS.push(['rdc', 100, 109]);
-  for (let n = 2; n <= 7; n++) FLOORS.push([String(n), 109 + 9.5 * (n - 2), 118.5 + 9.5 * (n - 2)]);
-  FLOORS.push(['toit', 166, 178.7]);
+  for (let n = 2; n <= NF; n++) FLOORS.push([String(n), 109 + 9.5 * (n - 2), 118.5 + 9.5 * (n - 2)]);
+  FLOORS.push(['toit', TOP, MEZR]);
   // fenêtres allumées la nuit (motif fixe, pas aléatoire au rechargement)
-  const LIT = '110111101011111101';
+  const lit = i => (i * 7 + 3) % 10 < 7;
 
   function el(tag, attrs, parent) {
     const e = document.createElementNS(NS, tag);
@@ -39,8 +42,8 @@
 
     // contexte : voisins, trottoir
     const voisin = nuit ? C.graphite : C.beton;
-    el('rect', { x: 0, y: 470, width: 108, height: G - 470, fill: voisin, opacity: nuit ? .55 : .22 });
-    el('rect', { x: 447, y: 80, width: 113, height: G - 80, fill: voisin, opacity: nuit ? .55 : .22 });
+    el('rect', { x: 0, y: G - 370, width: 108, height: 370, fill: voisin, opacity: nuit ? .55 : .22 });
+    el('rect', { x: 447, y: G - 1150, width: 113, height: 1150, fill: voisin, opacity: nuit ? .55 : .22 });
     el('rect', { x: 0, y: G, width: 560, height: 14, fill: C.beton, opacity: nuit ? .25 : .35 });
     el('rect', { x: 0, y: G + 14, width: 560, height: 46, fill: nuit ? C.graphite : C.beton, opacity: nuit ? .5 : .15 });
 
@@ -49,26 +52,26 @@
 
     // pavillon / mezzanine
     if (mem) {
-      el('rect', { x: 150, y: yAt(178.7), width: 180, height: 7, fill: nuit ? C.graphite : C.encre });
-      el('rect', { x: 154, y: yAt(178), width: 172, height: yAt(171.6) - yAt(178), fill: nuit ? C.craie : C.graphite, opacity: nuit ? .9 : 1, filter: nuit ? 'url(#glow)' : '' });
-      for (let x = 154; x <= 326; x += 28.6) el('line', { x1: x, x2: x, y1: yAt(178), y2: yAt(171.6), stroke: nuit ? C.graphite : C.encre, 'stroke-width': 2 });
-      if (!nuit) el('rect', { x: 154, y: yAt(178), width: 172, height: 18, fill: C.beton, opacity: .18 });
-      el('line', { x1: X0, x2: XB, y1: yAt(171.6) - 9, y2: yAt(171.6) - 9, stroke: C.beton, 'stroke-width': 1.2 });   // garde-corps
-      for (let x = X0; x <= XB; x += 20) el('line', { x1: x, x2: x, y1: yAt(171.6) - 9, y2: yAt(171.6), stroke: C.beton, 'stroke-width': .8 });
+      el('rect', { x: 150, y: yAt(MEZR), width: 180, height: 7, fill: nuit ? C.graphite : C.encre });
+      el('rect', { x: 154, y: yAt(MEZ), width: 172, height: yAt(PAR) - yAt(MEZ), fill: nuit ? C.craie : C.graphite, opacity: nuit ? .9 : 1, filter: nuit ? 'url(#glow)' : '' });
+      for (let x = 154; x <= 326; x += 28.6) el('line', { x1: x, x2: x, y1: yAt(MEZ), y2: yAt(PAR), stroke: nuit ? C.graphite : C.encre, 'stroke-width': 2 });
+      if (!nuit) el('rect', { x: 154, y: yAt(MEZ), width: 172, height: 18, fill: C.beton, opacity: .18 });
+      el('line', { x1: X0, x2: XB, y1: yAt(PAR) - 9, y2: yAt(PAR) - 9, stroke: C.beton, 'stroke-width': 1.2 });   // garde-corps
+      for (let x = X0; x <= XB; x += 20) el('line', { x1: x, x2: x, y1: yAt(PAR) - 9, y2: yAt(PAR), stroke: C.beton, 'stroke-width': .8 });
     } else {
-      el('rect', { x: X0, y: yAt(178.7), width: 240, height: yAt(171.6) - yAt(178.7), fill: nuit ? '#2c2b29' : '#55534f' });
+      el('rect', { x: X0, y: yAt(MEZR), width: 240, height: yAt(PAR) - yAt(MEZR), fill: nuit ? '#2c2b29' : '#55534f' });
       for (let i = 0; i < 4; i++) el('rect', { x: 196 + i * 22, y: yAt(177.5), width: 16, height: 42, fill: nuit ? C.craie : C.graphite, opacity: nuit ? .8 : 1 });
     }
 
     // corps + cage d'escalier
-    el('rect', { x: X0, y: yAt(171.6), width: XB - X0, height: G - yAt(171.6), fill: body });
-    el('rect', { x: XB, y: yAt(171.6), width: X1 - XB, height: G - yAt(171.6), fill: tower });
-    el('rect', { x: XB, y: yAt(171.6), width: X1 - XB, height: G - yAt(171.6), fill: 'url(#brique)' });
-    if (mem) el('rect', { x: X0 - 3, y: yAt(171.6) - 3, width: X1 - X0 + 6, height: 4, fill: nuit ? C.beton : C.graphite });   // couronnement
+    el('rect', { x: X0, y: yAt(PAR), width: XB - X0, height: G - yAt(PAR), fill: body });
+    el('rect', { x: XB, y: yAt(PAR), width: X1 - XB, height: G - yAt(PAR), fill: tower });
+    el('rect', { x: XB, y: yAt(PAR), width: X1 - XB, height: G - yAt(PAR), fill: 'url(#brique)' });
+    if (mem) el('rect', { x: X0 - 3, y: yAt(PAR) - 3, width: X1 - X0 + 6, height: 4, fill: nuit ? C.beton : C.graphite });   // couronnement
 
     // étages 2 à 7
     let i = 0;
-    for (let n = 2; n <= 7; n++) {
+    for (let n = 2; n <= NF; n++) {
       const top = yAt(118.5 + 9.5 * (n - 2)), bot = yAt(109 + 9.5 * (n - 2));
       if (mem) {
         el('line', { x1: X0, x2: XB, y1: bot, y2: bot, stroke: nuit ? C.encre : C.graphite, 'stroke-width': 1.4 });
@@ -78,13 +81,13 @@
       }
       [160, 240, 320].forEach(cx => {
         const w = mem ? 46 : 44, h = 58, x = cx - w / 2, y = top + 18;
-        const lit = nuit && LIT[i++] === '1';
+        const on = nuit && lit(i++);
         if (mem) {
           // la porte : cadre béton ouvert vers le bas
           el('path', { d: `M${x - 7} ${y + h + 10} V${y - 8} H${x + w + 7} V${y + h + 10}`, fill: 'none', stroke: C.beton, 'stroke-width': 3.2, opacity: nuit ? .55 : 1 });
         }
-        el('rect', { x, y, width: w, height: h, fill: lit ? C.craie : (mem ? (nuit ? C.encre : C.graphite) : (nuit ? '#1b1b1c' : C.graphite)), opacity: lit ? .92 : 1, filter: lit ? 'url(#glow)' : '' });
-        if (!lit && !nuit) el('path', { d: `M${x} ${y + h * .55} L${x + w * .55} ${y} H${x + w * .8} L${x} ${y + h * .85}Z`, fill: C.beton, opacity: .14 });
+        el('rect', { x, y, width: w, height: h, fill: on ? C.craie : (mem ? (nuit ? C.encre : C.graphite) : (nuit ? '#1b1b1c' : C.graphite)), opacity: on ? .92 : 1, filter: on ? 'url(#glow)' : '' });
+        if (!on && !nuit) el('path', { d: `M${x} ${y + h * .55} L${x + w * .55} ${y} H${x + w * .8} L${x} ${y + h * .85}Z`, fill: C.beton, opacity: .14 });
         el('line', { x1: x + w / 2, x2: x + w / 2, y1: y, y2: y + h, stroke: mem ? C.encre : C.craie, 'stroke-width': 1.2, opacity: .8 });
         if (!mem) el('rect', { x, y, width: w, height: h, fill: 'none', stroke: C.craie, 'stroke-width': 1.5 });
       });
@@ -93,8 +96,8 @@
     // enseigne verticale sur la cage d'escalier
     if (mem) {
       const t = el('text', {
-        x: 0, y: 0, transform: `translate(${(XB + X1) / 2 + 6} ${yAt(166) + 14}) rotate(90)`,
-        'font-family': 'Space Mono, monospace', 'font-size': 15, 'letter-spacing': 7.6, fill: C.craie,
+        x: 0, y: 0, transform: `translate(${(XB + X1) / 2 + 8} ${(yAt(PAR) + yAt(109)) / 2}) rotate(90)`, 'text-anchor': 'middle',
+        'font-family': 'Space Mono, monospace', 'font-size': 22, 'letter-spacing': 16, fill: C.craie,
         filter: nuit ? 'url(#glow)' : ''
       });
       t.textContent = 'HÔTEL · MEMENTO · MONTRÉAL';

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The building — Memento Montréal, opening 2027</title>
-<meta name="description" content="Explore the Memento building in Montréal: seven storeys, 38 factory-built studios, a ground-floor café and a rooftop pavilion. Opening in 2027.">
+<meta name="description" content="Explore the Memento building in Montréal: fourteen storeys, 80 factory-built studios, a ground-floor café and a rooftop pavilion. Opening in 2027.">
 <link rel="canonical" href="https://mementohotel.ca/en/building.html">
 <link rel="alternate" hreflang="fr" href="https://mementohotel.ca/batiment.html">
 <link rel="alternate" hreflang="en" href="https://mementohotel.ca/en/building.html">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_CA">
 <meta property="og:url" content="https://mementohotel.ca/en/building.html">
 <meta property="og:title" content="The Memento building — Montréal, 2027">
-<meta property="og:description" content="Seven storeys, 38 studios, a ground-floor café and a rooftop pavilion.">
+<meta property="og:description" content="Fourteen storeys, 80 studios, a ground-floor café and a rooftop pavilion.">
 <meta property="og:image" content="https://mementohotel.ca/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -155,7 +155,7 @@ footer a{text-decoration:none}
 <section class="intro">
   <p class="etq">The building · Montréal · 2027</p>
   <h1>Open door <span>to the street.</span></h1>
-  <p class="lead">Seven factory-built storeys, 38 studios, a café on the ground floor and a pavilion on the roof. Here is the façade as we picture it: hover a floor to explore it, switch to night to watch the building light up.</p>
+  <p class="lead">Fourteen factory-built storeys, 80 studios, a café on the ground floor and a pavilion on the roof. Here is the façade as we picture it: hover a floor to explore it, switch to night to watch the building light up.</p>
 </section>
 
 <section class="scene" aria-label="Interactive façade">
@@ -166,8 +166,8 @@ footer a{text-decoration:none}
         <button type="button" data-m="nuit" aria-pressed="false">Night</button>
       </div>
     </div>
-    <svg id="facade" viewBox="0 0 560 900" role="img" aria-labelledby="fac-t">
-      <title id="fac-t">South façade of the Memento building in Montréal: seven storeys, a glazed ground-floor café, a vertical sign and a rooftop pavilion.</title>
+    <svg id="facade" viewBox="0 0 560 1565" role="img" aria-labelledby="fac-t">
+      <title id="fac-t">South façade of the Memento building in Montréal: fourteen storeys, a glazed ground-floor café, a vertical sign and a rooftop pavilion.</title>
     </svg>
     <p class="etq legende" id="legende">South façade · approx. 1:200</p>
   </div>
@@ -187,15 +187,15 @@ footer a{text-decoration:none}
   <h2>Five moves <span>for a Memento façade.</span></h2>
   <ul class="changes">
     <li><span class="etq">01 · Material</span><b>An ink-black façade</b><p>A dark, matte skin. The building reads as one block, an object set down in the street.</p></li>
-    <li><span class="etq">02 · Windows</span><b>Every window is a door</b><p>A concrete frame, open at the bottom, surrounds each window: the brand symbol, repeated over six floors.</p></li>
+    <li><span class="etq">02 · Windows</span><b>Every window is a door</b><p>A concrete frame, open at the bottom, surrounds each window: the brand symbol, repeated over thirteen floors.</p></li>
     <li><span class="etq">03 · Sign</span><b>The vertical line</b><p>The stair tower carries “HÔTEL · MEMENTO · MONTRÉAL” in tall letters, like a laneway sign.</p></li>
     <li><span class="etq">04 · Ground floor</span><b>A wide-open café</b><p>The storefront runs the full width and the entrance takes the shape of the door. A blade sign carries the façade’s single vermilion dot.</p></li>
     <li><span class="etq">05 · Roof</span><b>A glass pavilion</b><p>The mezzanine becomes a set-back lantern that lights up above the city at night.</p></li>
   </ul>
   <ul class="chiffres" aria-label="The building in numbers">
-    <li><b>38</b><span class="etq">Private studios</span></li>
-    <li><b>7</b><span class="etq">Storeys + roof</span></li>
-    <li><b>10,428</b><span class="etq">Sq ft in total</span></li>
+    <li><b>80</b><span class="etq">Private studios</span></li>
+    <li><b>14</b><span class="etq">Storeys + roof</span></li>
+    <li><b>18,842</b><span class="etq">Sq ft in total</span></li>
     <li><b>9.7 m</b><span class="etq">Of frontage</span></li>
   </ul>
 </section>
@@ -208,16 +208,12 @@ footer a{text-decoration:none}
 </footer>
 
 <script>
-/* Floors: data from the plans (levels 100' → 178'-8"), 1 ft = 10 units. */
+/* Floors: data from the plans (9.5 ft floors, raised to 14 storeys), 1 ft = 10 units. */
 const L = {
   etage:'Floor',
   floors:[
     {k:'toit', n:'Roof', t:'The pavilion', d:'A set-back glass mezzanine (about 400 sq ft) and the roof around it: a pause above the city.'},
-    {k:'7', n:'7', t:'Studios', d:'Six private studios of 120 to 126 sq ft, built in a factory and set in place. A shared corner on every landing.'},
-    {k:'6', n:'6', t:'Studios', d:'Six private studios of 120 to 126 sq ft, built in a factory and set in place. A shared corner on every landing.'},
-    {k:'5', n:'5', t:'Studios', d:'Six private studios of 120 to 126 sq ft, built in a factory and set in place. A shared corner on every landing.'},
-    {k:'4', n:'4', t:'Studios', d:'Six private studios of 120 to 126 sq ft, built in a factory and set in place. A shared corner on every landing.'},
-    {k:'3', n:'3', t:'Studios', d:'Six private studios of 120 to 126 sq ft, built in a factory and set in place. A shared corner on every landing.'},
+    ...Array.from({length:12},(_,i)=>({k:String(14-i), n:String(14-i), t:'Studios', d:'Six private studios of 120 to 126 sq ft, built in a factory and set in place. A shared corner on every landing.'})),
     {k:'2', n:'2', t:'Studios', d:'The first studio floor, including larger studios (up to 266 sq ft) and accessible rooms.'},
     {k:'rdc', n:'GF', t:'Café and reception', d:'The ground floor opens onto the street: a glazed café, the hotel reception and the door-shaped entrance.'}
   ],
