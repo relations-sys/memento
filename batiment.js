@@ -20,7 +20,7 @@
   FLOORS.push(['toit', TOP, MEZR]);
   // fenêtres allumées la nuit (motif fixe, pas aléatoire au rechargement)
   const lit = i => (i * 7 + 3) % 10 < 7;
-  const POINT = [12, 240];             // la fenêtre ronde : étage, axe
+  const POINT = [8, 240];             // la fenêtre ronde : étage, axe
 
   function el(tag, attrs, parent) {
     const e = document.createElementNS(NS, tag);
