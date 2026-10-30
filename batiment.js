@@ -178,15 +178,13 @@
   document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => {
     const grp = b.parentElement;
     grp.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
-    if (b.dataset.v) state.v = b.dataset.v;
     if (b.dataset.m) { state.m = b.dataset.m; stage.classList.toggle('nuit', state.m === 'nuit'); }
     draw(); select(state.on);
   }));
 
-  // lien direct : #nuit, #origine (combinables : #origine-nuit)
+  // lien direct : #nuit
   const h = location.hash;
   if (/nuit|night/.test(h)) document.querySelector('[data-m="nuit"]').click();
-  if (/origine|original/.test(h)) document.querySelector('[data-v="origine"]').click();
 
   draw(); select(state.on);
   if (document.fonts) document.fonts.ready.then(() => { draw(); select(state.on); });
