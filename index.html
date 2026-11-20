@@ -11,6 +11,7 @@
 <link rel="alternate" hreflang="x-default" href="https://mementohotel.ca/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#0B0B0C">
+<script>document.documentElement.classList.add('js')</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -170,7 +171,13 @@ body{
 .porte{display:block;stroke:currentColor;fill:none}
 
 /* ---------- chrome ---------- */
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:22px var(--gut);border-bottom:1px solid var(--line)}
+/* La barre flotte : un matériau translucide, le contenu défile dessous.
+   Le filet n'apparaît qu'une fois que le contenu passe sous la barre. */
+.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:22px var(--gut);
+  background:rgba(11,11,12,.62);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);
+  border-bottom:1px solid transparent;transition:border-color .3s}
+.topbar.sous{border-bottom-color:var(--line)}
+@media(prefers-reduced-transparency:reduce){.topbar{background:var(--encre);-webkit-backdrop-filter:none;backdrop-filter:none}}
 .lng{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px 14px;align-items:center}
 @media(max-width:560px){.topbar{gap:12px}.lng{gap:8px 11px}}
 .lng a{text-decoration:none;color:var(--beton)}
@@ -196,13 +203,16 @@ h1 span{font-weight:300}
 .cadre{position:relative;width:min(100%,380px);aspect-ratio:100/116;margin-left:auto;overflow:hidden}
 @media(max-width:880px){.cadre{margin:0 auto;width:min(70vw,300px)}}
 .cadre svg{position:absolute;inset:0;width:100%;height:100%}
-.battant{position:absolute;top:3.5%;bottom:0;width:46.5%;background:var(--graphite);transform-origin:left center;
-  animation:ouvre 2.4s cubic-bezier(.7,0,.2,1) .5s both}
+/* Les battants sont pilotés par un ressort (porte.js plus bas) : on peut les saisir
+   en plein mouvement, les pousser, les lancer. Sans JS ou en mouvement réduit,
+   la porte reste simplement entrouverte. */
+.battant{position:absolute;top:3.5%;bottom:0;width:46.5%;background:var(--graphite);transform-origin:left center;transform:scaleX(.22)}
 .battant.g{left:3.5%}
-.battant.d{right:3.5%;transform-origin:right center;animation-name:ouvre-d}
-@keyframes ouvre{to{transform:scaleX(.22)}}
-@keyframes ouvre-d{to{transform:scaleX(.22)}}
-@media(prefers-reduced-motion:reduce){.battant{animation:none;transform:scaleX(.22)}}
+.battant.d{right:3.5%;transform-origin:right center}
+.js .battant{transform:scaleX(1)}
+.cadre.vivant{cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.cadre.vivant.tient{cursor:grabbing}
+.cadre.vivant:focus-visible{outline:1px solid var(--craie);outline-offset:6px}
 
 /* sur place : café, resto-bar, spa */
 /* les villes : deux adresses, une année */
@@ -218,8 +228,12 @@ h1 span{font-weight:300}
 .lieux li:last-child{border-right:0;margin-right:0}
 .lieux b{display:block;white-space:nowrap;font-size:clamp(18px,1.7vw,24px);font-weight:500;letter-spacing:-.02em;line-height:1.15}
 .lieux .etq{display:block;margin-top:6px;font-size:9.5px}
-.voir{display:inline-flex;align-items:center;gap:12px;margin-top:clamp(22px,3.4vh,32px);color:var(--craie);text-decoration:none;font-size:15px;font-weight:500;border:1px solid rgba(241,237,230,.5);padding:13px 18px;transition:background .2s,color .2s}
+.voir{display:inline-flex;align-items:center;gap:12px;margin-top:clamp(22px,3.4vh,32px);color:var(--craie);text-decoration:none;font-size:15px;font-weight:500;border:1px solid rgba(241,237,230,.5);padding:13px 18px}
 .voir:hover{background:var(--craie);color:var(--encre)}
+/* Réponse à l'appui, pas au relâchement : la pression se voit tout de suite. */
+.voir,.nl-row button,.villes a{transition:background .2s,color .2s,transform .1s ease-out}
+.voir:active,.nl-row button:active,.villes a:active{transform:scale(.97)}
+@media(prefers-reduced-motion:reduce){.voir:active,.nl-row button:active,.villes a:active{transform:none;opacity:.8}}
 .voirs{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(22px,3.4vh,32px)}
 .voirs .voir{margin-top:0}
 /* infolettre : un champ, un consentement, un bouton vermillon */
@@ -346,6 +360,75 @@ const BREVO_FORM_URL = 'https://40240a81.sibforms.com/serve/MUIFACaUmlWmCzXZRJhV
     }catch(_){ msg.classList.add('err'); msg.textContent = 'Erreur, réessaie plus tard'; }
     btn.disabled = false;
   });
+})();
+</script>
+<script>
+/* La porte. Un ressort (amortissement + réponse, à la manière d'Apple) tient
+   l'ouverture p : 0 = fermée, 1 = entrouverte. Le geste suit le doigt 1:1 depuis
+   l'endroit saisi, résiste au-delà des butées, et au relâchement la porte part à
+   la vitesse du doigt vers la butée la plus proche du point projeté. Saisie en
+   plein vol, elle repart de sa position affichée. */
+(function(){
+  const cadre = document.querySelector('.cadre'); if(!cadre) return;
+  const g = cadre.querySelector('.battant.g'), d = cadre.querySelector('.battant.d');
+  const calme = matchMedia('(prefers-reduced-motion: reduce)');
+  let p = 0, v = 0, cible = 1, zeta = 1, rep = 1.1, raf = 0, t0 = 0;
+  const pose = x => { const s = 1 - .78 * x; g.style.transform = d.style.transform = 'scaleX(' + s + ')'; };
+  function pas(t){
+    const dt = Math.min((t - t0) / 1000, 1 / 30); t0 = t;
+    const k = Math.pow(2 * Math.PI / rep, 2), c = 4 * Math.PI * zeta / rep;
+    v += (-k * (p - cible) - c * v) * dt; p += v * dt; pose(p);
+    if(Math.abs(v) < .002 && Math.abs(p - cible) < .001){ p = cible; v = 0; pose(p); raf = 0; return; }
+    raf = requestAnimationFrame(pas);
+  }
+  function vers(c, opts){
+    cible = c; zeta = opts.zeta; rep = opts.rep; if(opts.v !== undefined) v = opts.v;
+    if(calme.matches){ p = c; v = 0; pose(p); return; }
+    if(!raf){ t0 = performance.now(); raf = requestAnimationFrame(pas); }
+  }
+  const butee = (x, dim) => (x * dim * .55) / (dim + .55 * Math.abs(x));
+  const borne = x => x < 0 ? butee(x, 1) : x > 1 ? 1 + butee(x - 1, 1) : x;
+  cadre.classList.add('vivant'); cadre.removeAttribute('aria-hidden');
+  cadre.setAttribute('role', 'button'); cadre.tabIndex = 0;
+  cadre.setAttribute('aria-label', document.documentElement.lang === 'en' ? 'Open or close the door' : 'Ouvrir ou fermer la porte');
+  pose(0);
+  if(calme.matches){ p = 1; pose(1); } else setTimeout(() => vers(1, {zeta: 1, rep: 1.1}), 500);
+  let tient = false, x0 = 0, p0 = 0, sens = 1, histo = [], bouge = false;
+  cadre.addEventListener('pointerdown', e => {
+    if(e.button) return;
+    cancelAnimationFrame(raf); raf = 0;
+    tient = true; bouge = false; cadre.setPointerCapture(e.pointerId); cadre.classList.add('tient');
+    const r = cadre.getBoundingClientRect();
+    sens = e.clientX < r.left + r.width / 2 ? -1 : 1;
+    x0 = e.clientX; p0 = p; histo = [[e.timeStamp, p]];
+  });
+  cadre.addEventListener('pointermove', e => {
+    if(!tient) return;
+    const dx = (e.clientX - x0) * sens;
+    if(!bouge && Math.abs(dx) < 6) return;
+    bouge = true;
+    p = borne(p0 + dx / (cadre.clientWidth * .36)); pose(p);
+    histo.push([e.timeStamp, p]); if(histo.length > 6) histo.shift();
+  });
+  function lache(e){
+    if(!tient) return; tient = false; cadre.classList.remove('tient');
+    if(!bouge){ vers(cible > .5 ? 0 : 1, {zeta: 1, rep: .45}); return; }
+    const [ta, pa] = histo[0], [tb, pb] = histo[histo.length - 1];
+    const vit = tb > ta ? (pb - pa) / ((tb - ta) / 1000) : 0;
+    const proj = p + (vit / 1000) * .99 / (1 - .99);
+    vers(proj > .5 ? 1 : 0, {zeta: .8, rep: .4, v: vit});
+  }
+  cadre.addEventListener('pointerup', lache);
+  cadre.addEventListener('pointercancel', lache);
+  cadre.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); vers(cible > .5 ? 0 : 1, {zeta: 1, rep: .45}); }
+  });
+})();
+/* Le filet sous la barre n'apparaît que quand du contenu passe dessous. */
+(function(){
+  const bar = document.querySelector('.topbar'); if(!bar) return;
+  const maj = () => bar.classList.toggle('sous', scrollY > 4);
+  addEventListener('scroll', maj, {passive: true}); maj();
 })();
 </script>
 </body>
