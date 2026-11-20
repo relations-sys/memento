@@ -48,7 +48,12 @@ a{color:inherit}
 .etq{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--beton)}
 .porte{display:block;stroke:currentColor;fill:none}
 
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:22px var(--gut);border-bottom:1px solid var(--line)}
+/* La barre flotte : un matériau translucide, le contenu défile dessous (fluide.js). */
+.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:22px var(--gut);
+  background:rgba(11,11,12,.62);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);
+  border-bottom:1px solid transparent;transition:border-color .3s}
+.topbar.sous{border-bottom-color:var(--line)}
+@media(prefers-reduced-transparency:reduce){.topbar{background:var(--encre);-webkit-backdrop-filter:none;backdrop-filter:none}}
 .topbar .mk{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--craie)}
 .lng{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px 14px;align-items:center}
 @media(max-width:560px){.topbar{gap:12px}.lng{gap:8px 11px}}
@@ -123,6 +128,22 @@ h1 span{font-weight:300}
 footer{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;padding:20px var(--gut);border-top:1px solid var(--line)}
 footer a{text-decoration:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---------- mouvement (fluide.js) ---------- */
+/* Le curseur d'étage remplace le surlignage fixe ; il glisse d'un étage à l'autre. */
+.curseur{fill:rgba(255,79,31,.09);pointer-events:none}
+.js .fl:hover rect.hit,.js .fl.on rect.hit{fill:transparent}
+/* Jour / nuit : le pouce glisse sous le bouton choisi. */
+.seg{position:relative}
+.seg .pouce{position:absolute;top:0;bottom:0;left:0;width:0;background:var(--encre)}
+.stage.nuit .seg .pouce{background:var(--craie)}
+.seg button{position:relative;z-index:1;transition:color .2s}
+.js .seg button[aria-pressed="true"]{background:transparent}
+.seg:not(:has(.pouce)) button[aria-pressed="true"]{background:var(--encre)}
+/* Réponse à l'appui, pas au relâchement. */
+.seg button:active,.pile button:active{transform:scale(.97)}
+.pile button{transition:transform .1s ease-out}
+@media(prefers-reduced-motion:reduce){.seg button:active,.pile button:active{transform:none;opacity:.8}}
 </style>
 </head>
 <body>
@@ -221,6 +242,7 @@ const L = {
   vers:{memento:'Façade sud · échelle 1:200 env.'}
 };
 </script>
+<script src="/fluide.js"></script>
 <script src="/batiment.js"></script>
 </body>
 </html>

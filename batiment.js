@@ -153,6 +153,7 @@
     });
 
     document.getElementById('legende').textContent = L.vers[state.v];
+    document.dispatchEvent(new Event('memento:dessin'));   // fluide.js
   }
 
   function floorOf(k) { return L.floors.find(f => f.k === k); }
@@ -165,6 +166,7 @@
     document.getElementById('d-txt').textContent = f.d;
     svg.querySelectorAll('.fl').forEach(g => g.classList.toggle('on', g.dataset.k === k));
     document.querySelectorAll('#pile button').forEach(b => b.setAttribute('aria-current', b.dataset.k === k));
+    document.dispatchEvent(new CustomEvent('memento:select', { detail: k }));   // fluide.js
   }
 
   // la pile d'étages, dans le panneau
